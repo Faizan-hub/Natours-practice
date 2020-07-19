@@ -5,7 +5,7 @@ const usersRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natou
 const reviewRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/reviewRoute');
 const viewsRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/viewsRouter');
 const bookingRoute = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/bookingRoute');
-
+const compression = require('compression');
 const appError = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/appError');
 const errorHandler = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/errorController');
 const { response, request } = require('express');
@@ -33,6 +33,7 @@ const limit = rateLimiter({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests, try again in a hour',
 });
+app.use(compression());
 app.use('/api', limit);
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
@@ -66,10 +67,10 @@ app.use('/api/v1/tours', toursRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/booking', bookingRoute);
-/*app.all('*', (request, response, next) => {
-  console.log(request.path);
+app.all('*', (request, response, next) => {
+  //console.log(request.path);
   next(new appError(`Can't find ${request} on this server!`));
-});*/
+});
 app.use(errorHandler);
 
 module.exports = app;

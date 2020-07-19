@@ -62135,7 +62135,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const bookTour = async tourId => {
   try {
     const stripes = await (0, _stripeJs.loadStripe)('pk_test_51H6PqVDPm72A3Gg8HVQf6By1eB8THGZq0goZ2N9uDki3aSBaHmQs4ZemapZWy9guchjmZuppqqIp4Euc2NYG7YR800Aj5xYkko');
-    const session = await (0, _axios.default)(`http://127.0.0.1:7676/api/v1/booking/check-out-session/${tourId}`);
+    const session = await (0, _axios.default)(`/api/v1/booking/check-out-session/${tourId}`);
     console.log(session);
     await stripes.redirectToCheckout({
       sessionId: session.data.session.id
@@ -62165,7 +62165,7 @@ const login = async (email, password) => {
   try {
     const response = await (0, _axios.default)({
       method: 'POST',
-      url: 'http://127.0.0.1:7676/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password
@@ -62173,8 +62173,8 @@ const login = async (email, password) => {
     });
 
     if (response.data.status === 'success') {
-      (0, _alert.showAlert)('success', 'Logged In Successfully');
-      console.log('Hello');
+      (0, _alert.showAlert)('success', 'Logged In Successfully'); //console.log('Hello');
+
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
@@ -62192,14 +62192,14 @@ const logOut = async () => {
   try {
     const response = await (0, _axios.default)({
       method: 'GET',
-      url: 'http://127.0.0.1:7676/api/v1/users/logOut'
+      url: '/api/v1/users/logOut'
     });
 
     if (response.data.status === 'success') {
       location.reload(true);
     }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     (0, _alert.showAlert)('error', 'Error! Logging Out! Try Again!');
   }
 };
@@ -62264,7 +62264,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const updateSettings = async (data, type) => {
   try {
-    const url = type === 'password' ? 'http://127.0.0.1:7676/api/v1/users/updatePassword' : 'http://127.0.0.1:7676/api/v1/users/updateCurrent'; //console.log(url);
+    const url = type === 'password' ? '/api/v1/users/updatePassword' : '/api/v1/users/updateCurrent'; //console.log(url);
 
     const response = await (0, _axios.default)({
       method: 'PATCH',
@@ -62396,7 +62396,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64990" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61192" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

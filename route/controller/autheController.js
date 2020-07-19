@@ -45,7 +45,7 @@ exports.signUp = catchAsync(async (request, response, next) => {
     //active: request.body.active,
   });
   const url = `${request.protocol}://${request.get('host')}/me`;
-  console.log(url);
+  //console.log(url);
   await new sendMail(newUser, url).sendWelcome();
   createsendStatus(newUser, 201, response);
 });
@@ -164,7 +164,7 @@ exports.forgetPassword = catchAsync(async (request, response, next) => {
       message: 'Token sent to your email',
     });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     user.passwordResetToken = undefined;
     user.passwordresetTokenExpires = undefined;
     await user.save({ validateBeforeSave: false });
