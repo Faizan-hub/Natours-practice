@@ -1,7 +1,7 @@
 const appError = require('../../utilis/appError');
 const catchAsync = require('../../utilis/catchAsync');
 const { request, response } = require('express');
-const ApiFeatures = require('D:\\Semester_4\\complete-node-bootcamp-master\\4-natours\\starter\\utilis\\apiFeatures');
+const ApiFeatures = require('../../utilis/ApiFeatures');
 
 exports.deleteone = (Model) =>
   catchAsync(async (request, response, next) => {

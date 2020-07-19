@@ -1,7 +1,7 @@
 const express = require('express');
-const authContoller = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/autheController');
-const viewController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/viewsController');
-const bookingController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/bookingController');
+const authContoller = require('./controller/autheController');
+const viewController = require('./controller/viewsController');
+const bookingController = require('./controller/bookingController');
 
 const router = express.Router();
 router.get(

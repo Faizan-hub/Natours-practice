@@ -1,15 +1,16 @@
 const morgan = require('morgan');
 const express = require('express');
-const toursRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/toursRouter');
-const usersRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/usersRouter');
-const reviewRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/reviewRoute');
-const viewsRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/viewsRouter');
-const bookingRoute = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/bookingRoute');
+const toursRouter = require('./route/toursRouter');
+const usersRouter = require('./route/usersRouter');
+const reviewRouter = require('./route/reviewRoute');
+const viewsRouter = require('./route/viewsRouter');
+const bookingRoute = require('./route/bookingRoute');
 const compression = require('compression');
-const appError = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/appError');
-const errorHandler = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/errorController');
+const appError = require('./utilis/appError');
+const errorHandler = require('./route/controller/errorController');
 const { response, request } = require('express');
 const app = express();
+app.use('trust proxy');
 const cookieParser = require('cookie-parser');
 const rateLimiter = require('express-rate-limit');
 const helmet = require('helmet');
@@ -20,10 +21,7 @@ const path = require('path');
 //Middlewares
 
 app.set('view engine', 'pug');
-app.set(
-  'views',
-  'D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/dev-data/views'
-);
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -56,11 +54,7 @@ app.use((request, response, next) => {
   request.Time = new Date().toISOString();
   next();
 });
-app.use(
-  express.static(
-    'D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/public'
-  )
-);
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json({ limit: '10kb' }));
 app.use('/', viewsRouter);
 app.use('/api/v1/tours', toursRouter);

@@ -1,14 +1,13 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 dotenv.config({
-  path:
-    'D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/config.env',
+  path: './config.env',
 });
 process.on('uncaughtException', (error) => {
   console.log(error.name, error.message);
   process.exit(1);
 });
-const app = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/app');
+const app = require('./app');
 
 mongoose
   .connect(process.env.DATABASE, {

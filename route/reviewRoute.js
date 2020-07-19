@@ -1,8 +1,8 @@
 const express = require('express');
 
-const reviewController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/reviewController');
+const reviewController = require('./controller/reviewController');
 
-const authController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/autheController');
+const authController = require('./controller/autheController');
 
 const router = express.Router({ mergeParams: true });
 router.use(authController.protect);

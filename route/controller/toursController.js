@@ -1,9 +1,9 @@
-const Tour = require('D:\\Semester_4\\complete-node-bootcamp-master\\4-natours\\starter\\models\\tourModels');
+const Tour = require('../../models/tourModels');
 const { request, response } = require('express');
-const catchAsync = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/catchAsync');
-const ApiFeatures = require('D:\\Semester_4\\complete-node-bootcamp-master\\4-natours\\starter\\utilis\\apiFeatures');
+const catchAsync = require('../../utilis/catchAsync');
+const ApiFeatures = require('../../utilis/ApiFeatures');
 const appError = require('../../utilis/appError');
-const factory = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/factoryHandler');
+const factory = require('./factoryHandler');
 const multer = require('multer');
 const sharp = require('sharp');
 exports.aliasTopCheap = (request, response, next) => {

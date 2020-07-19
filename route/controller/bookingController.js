@@ -1,6 +1,6 @@
 const { request, response } = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const factory = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/factoryHandler');
+const factory = require('./factoryHandler');
 
 const catchAsync = require('../../utilis/catchAsync');
 const Tour = require('../../models/tourModels');

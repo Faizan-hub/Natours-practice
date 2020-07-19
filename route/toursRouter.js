@@ -1,9 +1,9 @@
 const express = require('express');
 
-const toursController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/toursController');
-const authController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/autheController');
-const reviewController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/reviewController');
-const reviewRouter = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/reviewRoute');
+const toursController = require('./controller/toursController');
+const authController = require('./controller/autheController');
+const reviewController = require('./controller/reviewController');
+const reviewRouter = require('./reviewRoute');
 const router = express.Router();
 
 //router.param('id', toursController.checkId);

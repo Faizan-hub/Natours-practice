@@ -1,7 +1,7 @@
 const express = require('express');
 
-const authController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/autheController');
-const bookingController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/bookingController');
+const authController = require('./controller/autheController');
+const bookingController = require('./controller/bookingController');
 const { route } = require('../app');
 
 const router = express.Router();

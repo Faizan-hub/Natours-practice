@@ -1,12 +1,10 @@
-const User = require('D:\\Semester_4\\complete-node-bootcamp-master\\4-natours\\starter\\models\\userModels');
-const catchAsync = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/catchAsync');
-const {
-  syncIndexes,
-} = require('D:\\Semester_4\\complete-node-bootcamp-master\\4-natours\\starter\\models\\userModels');
+const User = require('../../models/userModels');
+const catchAsync = require('../../utilis/catchAsync');
+const { syncIndexes } = require('../../models/userModels');
 const { request, response } = require('express');
-const factory = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/factoryHandler');
+const factory = require('./factoryHandler');
 
-const appError = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/appError');
+const appError = require('../../utilis/appError');
 const multer = require('multer');
 const sharp = require('sharp');
 

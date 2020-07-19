@@ -1,7 +1,7 @@
-const Review = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/models/reviewModel');
+const Review = require('../../models/reviewModel');
 
-const catchAsync = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/catchAsync');
-const factory = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/factoryHandler');
+const catchAsync = require('../../utilis/catchAsync');
+const factory = require('./factoryHandler');
 
 const { request } = require('../../app');
 const { response } = require('express');

@@ -1,6 +1,6 @@
 const express = require('express');
-const userController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/usersController');
-const authController = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/route/controller/autheController');
+const userController = require('./controller/usersController');
+const authController = require('./controller/autheController');
 const router = express.Router();
 router.post('/signUp', authController.signUp);
 router.post('/logIn', authController.logIn);

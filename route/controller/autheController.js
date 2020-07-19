@@ -1,10 +1,10 @@
-const User = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/models/userModels');
-const catchAsync = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/catchAsync');
+const User = require('../../models/userModels');
+const catchAsync = require('../../utilis/catchAsync');
 const jwt = require('jsonwebtoken');
 const { request } = require('../../app');
 const { response } = require('express');
 const appError = require('../../utilis/appError');
-const sendMail = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/utilis/sendEmail');
+const sendMail = require('../../utilis/sendEmail');
 const { promisify } = require('util');
 const crypto = require('crypto');
 
@@ -14,17 +14,16 @@ const signToken = (id) => {
   });
 };
 
-const createsendStatus = (user, statusCode, response) => {
+const createsendStatus = (user, statusCode, request, response) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    secure: request.secure || request.headers('x-forwarded-proto') === 'https',
   };
-  if (process.env === 'production') {
-    cookieOptions.secure = true;
-  }
+
   response.cookie('jwt', token, cookieOptions);
   user.password = undefined;
   response.status(statusCode).json({
@@ -47,7 +46,7 @@ exports.signUp = catchAsync(async (request, response, next) => {
   const url = `${request.protocol}://${request.get('host')}/me`;
   //console.log(url);
   await new sendMail(newUser, url).sendWelcome();
-  createsendStatus(newUser, 201, response);
+  createsendStatus(newUser, 201, request, response);
 });
 exports.logIn = catchAsync(async (request, response, next) => {
   const { email, password } = request.body;
@@ -62,7 +61,7 @@ exports.logIn = catchAsync(async (request, response, next) => {
   if (!user || !(await correct)) {
     return next(new appError('Incorrect email or password!', 401));
   }
-  createsendStatus(user, 200, response);
+  createsendStatus(user, 200, request, response);
 });
 exports.logOut = async (request, response) => {
   response.cookie('jwt', 'loggedout', {
@@ -190,7 +189,7 @@ exports.resetPassword = catchAsync(async (request, response, next) => {
   user.passwordresetTokenExpires = undefined;
 
   await user.save();
-  createsendStatus(user, 200, response);
+  createsendStatus(user, 200, request, response);
 });
 exports.updatePassword = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id).select('+password');
@@ -203,6 +202,6 @@ exports.updatePassword = catchAsync(async (request, response, next) => {
   user.password = request.body.password;
   user.passwordConfirm = request.body.passwordConfirm;
   await user.save();
-  createsendStatus(user, 200, response);
+  createsendStatus(user, 200, request, response);
   console.log(request.body.password);
 });

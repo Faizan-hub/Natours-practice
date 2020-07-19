@@ -1,4 +1,4 @@
-const Tour = require('D:/Semester_4/complete-node-bootcamp-master/4-natours/starter/models/tourModels');
+const Tour = require('../../models/tourModels');
 const catchAsync = require('../../utilis/catchAsync');
 const { request, response } = require('express');
 const appError = require('../../utilis/appError');
